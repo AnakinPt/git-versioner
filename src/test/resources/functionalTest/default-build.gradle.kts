@@ -1,3 +1,3 @@
 plugins {
-    id("pt.com.hugodias.git-versioner")
+    id("pt.com.hugo-dias.git-versioner")
 }

@@ -13,9 +13,9 @@ public class VersionerPluginTest {
   @Test
   public void greetingTest() {
     Project project = ProjectBuilder.builder().build();
-    project.getPluginManager().apply("pt.com.hugodias.git-versioner");
+    project.getPluginManager().apply("pt.com.hugo-dias.git-versioner");
 
-    assertTrue(project.getPluginManager().hasPlugin("pt.com.hugodias.git-versioner"));
+    assertTrue(project.getPluginManager().hasPlugin("pt.com.hugo-dias.git-versioner"));
 
     assertNotNull(project.getTasks().getByName("printVersion"));
     assertNotNull(project.getTasks().getByName("tagVersion"));

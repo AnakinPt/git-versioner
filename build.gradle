@@ -1,7 +1,7 @@
 plugins {
     id 'java-gradle-plugin'
     id "com.diffplug.spotless" version "6.11.0"
-//    id 'pt.com.hugodias.git-versioner' version '1.0.0'
+//    id 'pt.com.hugo-dias.git-versioner' version '1.0.0'
     id 'maven-publish'
     id "com.gradle.plugin-publish" version "1.0.0"
 }
