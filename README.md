@@ -1,10 +1,12 @@
 # Gradle Git Versioner
-[![Plugin Portal](https://img.shields.io/maven-metadata/v?label=plugin%20portal&style=for-the-badge&logo=gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fio%2Ftoolebox%2Fgit-versioner%2Fio.toolebox.git-versioner.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/io.toolebox.git-versioner)
-[![Release Date](https://img.shields.io/github/release-date/toolebox-io/gradle-git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/io.toolebox.git-versioner)  
-[![Build Status](https://img.shields.io/github/workflow/status/toolebox-io/gradle-git-versioner/Build/master?style=for-the-badge&logo=github)](https://github.com/AnakinPt/git-versioner/actions?query=workflow%3ABuild)
-[![Sonar Tech Debt](https://img.shields.io/sonar/tech_debt/toolebox-io_gradle-git-versioner?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toolebox-io_gradle-git-versioner)
-[![Sonar Coverage](https://img.shields.io/sonar/coverage/toolebox-io_gradle-git-versioner?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toolebox-io_gradle-git-versioner)  
-[![MIT License](https://img.shields.io/github/license/toolebox-io/gradle-git-versioner?style=for-the-badge&logo=pagekit)](https://github.com/AnakinPt/git-versioner/blob/master/LICENSE)  
+[![Plugin Portal](https://img.shields.io/maven-metadata/v?label=plugin%20portal&logo=gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fplugin%2Fpt.com.hugo-dias.git-versioner%2Fmaven-metadata.xml&style=for-the-badge)](https://img.shields.io/gradle-plugin-portal/v/pt.com.hugo-dias.git-versioner)
+[![Release Date](https://img.shields.io/github/release-date/AnakinPt/git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner)  
+[![Build Status](https://img.shields.io/github/workflow/status/AnakinPt/git-versioner/Build?logo=github&style=for-the-badge)](https://github.com/AnakinPt/git-versioner/actions?query=workflow%3Abuild)
+
+[//]: # ([![Sonar Tech Debt]&#40;https://img.shields.io/sonar/tech_debt/toolebox-io_gradle-git-versioner?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&#41;]&#40;https://sonarcloud.io/dashboard?id=toolebox-io_gradle-git-versioner&#41;)
+
+[//]: # ([![Sonar Coverage]&#40;https://img.shields.io/sonar/coverage/toolebox-io_gradle-git-versioner?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&#41;]&#40;https://sonarcloud.io/dashboard?id=toolebox-io_gradle-git-versioner&#41;  )
+[![MIT License](https://img.shields.io/github/license/AnakinPt/git-versioner?logo=pagekit&style=for-the-badge)](https://github.com/AnakinPt/git-versioner/blob/master/LICENSE)  
 
 ## What is Git Versioner?
 Git Versioner is the coolest way to automatically increase your version numbers.
