@@ -36,7 +36,7 @@ test {
 gradlePlugin {
     plugins {
         simplePlugin {
-            id = 'pt.com.hugodias.git-versioner'
+            id = 'pt.com.hugo-dias.git-versioner'
             displayName = 'Automated semantic versioning'
             description = 'This plugin will help you by creating a new version for each git commit based in the commit description'
             implementationClass = 'pt.com.hugodias.gradle.gitversioner.VersionerPlugin'
