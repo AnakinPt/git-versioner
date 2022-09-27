@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'pt.com.hugodias.gradle.gitversioner'
-version '1.0.0'
+version '0.0.1'
 
 repositories {
     mavenCentral()
@@ -37,6 +37,8 @@ gradlePlugin {
     plugins {
         simplePlugin {
             id = 'pt.com.hugodias.git-versioner'
+            displayName = 'Automated semantic versioning'
+            description = 'This plugin will help you by creating a new version for each git commit based in the commit description'
             implementationClass = 'pt.com.hugodias.gradle.gitversioner.VersionerPlugin'
         }
     }
@@ -54,7 +56,20 @@ spotless {
 }
 
 pluginBundle {
-    website = '<substitute your project website>'
-    vcsUrl = '<uri to project source repository>'
-    tags = ['tags', 'for', 'your', 'plugins']
+    website = 'https://github.com/AnakinPt/git-versioner'
+    vcsUrl = 'https://github.com/AnakinPt/git-versioner'
+    tags = ['git', 'version', 'semantic-version']
+}
+
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'localPluginRepository'
+            url = '../local-plugin-repository'
+        }
+    }
 }
