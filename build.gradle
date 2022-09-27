@@ -1,13 +1,13 @@
 plugins {
     id 'java-gradle-plugin'
     id "com.diffplug.spotless" version "6.11.0"
-    //id 'pt.com.hugodias.git-versioner' version '1.0.0'
+//    id 'pt.com.hugodias.git-versioner' version '1.0.0'
     id 'maven-publish'
     id "com.gradle.plugin-publish" version "1.0.0"
 }
 
 group 'pt.com.hugodias.gradle.gitversioner'
-version '0.0.1'
+version '0.0.2'
 
 repositories {
     mavenCentral()
