@@ -82,11 +82,11 @@ sonarqube {
         property "sonar.projectKey", "AnakinPt_git-versioner"
         property "sonar.organization", "anakinpt"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.sources", "src/main/java"
-        property "sonar.tests", "src/test/java"
-        property "sonar.junit.reportPaths", "build/test-results/**/*.xml"
-        property "sonar.jacoco.reportPaths", "build/jacoco/*.exec"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
-        property "sonar.cpd.exclusions", "src/test/**/*"
+//        property "sonar.sources", "src/main/java"
+//        property "sonar.tests", "src/test/java"
+//        property "sonar.junit.reportPaths", "build/test-results/**/*.xml"
+//        property "sonar.jacoco.reportPaths", "build/jacoco/*.exec"
+//        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+//        property "sonar.cpd.exclusions", "src/test/**/*"
     }
 }
