@@ -6,6 +6,7 @@ plugins {
     id "com.gradle.plugin-publish" version "1.0.0"
     id "pl.droidsonroids.jacoco.testkit" version "1.0.7"
     id "jacoco"
+    id "org.sonarqube" version "3.4.0.2513"
 }
 
 group 'pt.com.hugodias.gradle.gitversioner'
@@ -73,5 +74,19 @@ publishing {
             name = 'localPluginRepository'
             url = '../local-plugin-repository'
         }
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "AnakinPt_git-versioner"
+        property "sonar.organization", "anakinpt"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.junit.reportPaths", "build/test-results/**/*.xml"
+        property "sonar.jacoco.reportPaths", "build/jacoco/*.exec"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.cpd.exclusions", "src/test/**/*"
     }
 }
