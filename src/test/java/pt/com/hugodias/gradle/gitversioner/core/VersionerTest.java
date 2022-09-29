@@ -18,7 +18,7 @@ import pt.com.hugodias.gradle.gitversioner.core.version.Versioner;
 import pt.com.hugodias.gradle.gitversioner.core.version.VersionerConfig;
 
 @IntegrationTest
-public class VersionerTest {
+class VersionerTest {
   private File projectDir = new File("build/tmp/integrationTest/local");
   private Git git;
 
@@ -37,7 +37,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments major version for commit messages matching default major regex")
-  public void testIncrementsMajorVersionForCommitMatchingMajorRegex() throws GitAPIException {
+  void testIncrementsMajorVersionForCommitMatchingMajorRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("major", 3);
     VersionerConfig versionerConfig = VersionerConfig.builder().build();
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
@@ -47,7 +47,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments minor version for commit messages matching default minor regex")
-  public void testIncrementsMinorVersionForCommitMatchingMinorRegex() throws GitAPIException {
+  void testIncrementsMinorVersionForCommitMatchingMinorRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("minor", 2);
     VersionerConfig versionerConfig = VersionerConfig.builder().build();
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
@@ -57,7 +57,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments patch version for commit messages matching default patch regex")
-  public void testIncrementsPatchVersionForCommitMatchingPatchRegex() throws GitAPIException {
+  void testIncrementsPatchVersionForCommitMatchingPatchRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("patch", 1);
     VersionerConfig versionerConfig = VersionerConfig.builder().build();
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
@@ -67,7 +67,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments commit version for commit messages matching not matching any regex")
-  public void testIncrementsCommitVersionForCommitNotMatchingAnyRegex() throws GitAPIException {
+  void testIncrementsCommitVersionForCommitNotMatchingAnyRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("hello", 4);
     VersionerConfig versionerConfig = VersionerConfig.builder().build();
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
@@ -77,7 +77,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Major version increment resets minor, patch, and commit versions")
-  public void testMajorVersionIncrementResetsMinorPatchCommit() throws GitAPIException {
+  void testMajorVersionIncrementResetsMinorPatchCommit() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("hello", 1);
     givenRepositoryHasTypeCommitsNumbering("patch", 1);
     givenRepositoryHasTypeCommitsNumbering("minor", 1);
@@ -87,14 +87,14 @@ public class VersionerTest {
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
     Version version = versioner.version(versionerConfig);
     assertThat(version.getMajor()).isEqualTo(1);
-    assertThat(version.getMinor()).isEqualTo(0);
-    assertThat(version.getPatch()).isEqualTo(0);
-    assertThat(version.getCommit()).isEqualTo(0);
+    assertThat(version.getMinor()).isZero();
+    assertThat(version.getPatch()).isZero();
+    assertThat(version.getCommit()).isZero();
   }
 
   @Test
   @DisplayName("Minor version increment resets patch, and commit versions")
-  public void testMinorVersionIncrementResetsPatchCommit() throws GitAPIException {
+  void testMinorVersionIncrementResetsPatchCommit() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("hello", 1);
     givenRepositoryHasTypeCommitsNumbering("patch", 1);
     givenRepositoryHasTypeCommitsNumbering("minor", 1);
@@ -103,13 +103,13 @@ public class VersionerTest {
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
     Version version = versioner.version(versionerConfig);
     assertThat(version.getMinor()).isEqualTo(1);
-    assertThat(version.getPatch()).isEqualTo(0);
-    assertThat(version.getCommit()).isEqualTo(0);
+    assertThat(version.getPatch()).isZero();
+    assertThat(version.getCommit()).isZero();
   }
 
   @Test
   @DisplayName("Patch version increment resets commit versions")
-  public void testPatchVersionIncrementResetsCommit() throws GitAPIException {
+  void testPatchVersionIncrementResetsCommit() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("hello", 1);
     givenRepositoryHasTypeCommitsNumbering("patch", 1);
 
@@ -117,12 +117,12 @@ public class VersionerTest {
     Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
     Version version = versioner.version(versionerConfig);
     assertThat(version.getPatch()).isEqualTo(1);
-    assertThat(version.getCommit()).isEqualTo(0);
+    assertThat(version.getCommit()).isZero();
   }
 
   @Test
   @DisplayName("Commit version increment resets nothing")
-  public void testCommitVersionResetsNothing() throws GitAPIException {
+  void testCommitVersionResetsNothing() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("major", 1);
     givenRepositoryHasTypeCommitsNumbering("minor", 1);
     givenRepositoryHasTypeCommitsNumbering("patch", 1);
@@ -139,7 +139,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Works even when there's loads of commits")
-  public void testorksithLotsOfCommits() throws GitAPIException {
+  void testorksithLotsOfCommits() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("major", 100);
     givenRepositoryHasTypeCommitsNumbering("minor", 100);
     givenRepositoryHasTypeCommitsNumbering("patch", 100);
@@ -156,7 +156,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments major version from point specified in configuration")
-  public void testIncrementsMajorFromPoint() throws GitAPIException {
+  void testIncrementsMajorFromPoint() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("major", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().startFromMajor(1).build();
@@ -167,7 +167,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments minor version from point specified in configuration")
-  public void testIncrementsMinorFromPoint() throws GitAPIException {
+  void testIncrementsMinorFromPoint() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("minor", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().startFromMinor(2).build();
@@ -178,7 +178,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments patch version from point specified in configuration")
-  public void testIncrementsPatchFromPoint() throws GitAPIException {
+  void testIncrementsPatchFromPoint() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("patch", 3);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().startFromPatch(1).build();
@@ -189,7 +189,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments major version based on major match regex specified in configuration")
-  public void testIncrementsMajorBasedMajorRegex() throws GitAPIException {
+  void testIncrementsMajorBasedMajorRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("trex", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().matchMajor("trex").build();
@@ -200,7 +200,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments minor version based on minor match regex specified in configuration")
-  public void testIncrementsMinorBasedMinorRegex() throws GitAPIException {
+  void testIncrementsMinorBasedMinorRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("stego", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().matchMinor("stego").build();
@@ -211,7 +211,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Increments patch version based on patch match regex specified in configuration")
-  public void testIncrementsPatchBasedPatchRegex() throws GitAPIException {
+  void testIncrementsPatchBasedPatchRegex() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("compy", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().matchPatch("compy").build();
@@ -222,7 +222,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Version includes current branch")
-  public void testVersionIncludesCurrentBranch() throws GitAPIException {
+  void testVersionIncludesCurrentBranch() throws GitAPIException {
     givenRepositoryHasTypeCommitsNumbering("hello", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().build();
@@ -233,7 +233,7 @@ public class VersionerTest {
 
   @Test
   @DisplayName("Version includes commit hash from HEAD")
-  public void testVersionIncludesCommitHashFromHead() throws GitAPIException, IOException {
+  void testVersionIncludesCommitHashFromHead() throws GitAPIException, IOException {
     givenRepositoryHasTypeCommitsNumbering("hello", 1);
 
     VersionerConfig versionerConfig = VersionerConfig.builder().build();

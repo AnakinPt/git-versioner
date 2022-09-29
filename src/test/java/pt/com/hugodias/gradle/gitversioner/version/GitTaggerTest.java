@@ -22,7 +22,7 @@ import pt.com.hugodias.gradle.gitversioner.core.tag.GitTagger;
 import pt.com.hugodias.gradle.gitversioner.core.tag.TaggerConfig;
 
 @IntegrationTest
-public class GitTaggerTest {
+class GitTaggerTest {
 
   private File projectDir = new File("build/tmp/integrationTest/local");
   private File remoteDir = new File("build/tmp/integrationTest/remote");
@@ -62,7 +62,7 @@ public class GitTaggerTest {
 
   @Test
   @DisplayName("Creates tag locally and pushes to remote repository")
-  public void createTagLocallyAndPushToRemote() throws GitAPIException, IOException {
+  void createTagLocallyAndPushToRemote() throws GitAPIException, IOException {
     GitTagger tagger =
         GitTagger.builder().gitFolder(projectDir).config(TaggerConfig.builder().build()).build();
     tagger.tag("1.0.0");
@@ -72,7 +72,7 @@ public class GitTaggerTest {
 
   @Test
   @DisplayName("Creates overridden tag locally and pushes to remote repository")
-  public void createsOverridenTagLocallyAndPushesToRemote() throws GitAPIException, IOException {
+  void createsOverridenTagLocallyAndPushesToRemote() throws GitAPIException, IOException {
     GitTagger tagger =
         GitTagger.builder()
             .gitFolder(projectDir)
@@ -85,17 +85,17 @@ public class GitTaggerTest {
 
   @Test
   @DisplayName("Creates tag with no message when not specified")
-  public void createsTagWithNoMessageWhenNotSpecified() throws GitAPIException, IOException {
+  void createsTagWithNoMessageWhenNotSpecified() throws GitAPIException, IOException {
     GitTagger tagger =
         GitTagger.builder().gitFolder(projectDir).config(TaggerConfig.builder().build()).build();
     tagger.tag("1.0.0");
-    assertThat(lastTag(localGit).getFullMessage()).isEqualTo("");
-    assertThat(lastTag(remoteGit).getFullMessage()).isEqualTo("");
+    assertThat(lastTag(localGit).getFullMessage()).isEmpty();
+    assertThat(lastTag(remoteGit).getFullMessage()).isEmpty();
   }
 
   @Test
   @DisplayName("Creates tag with message as last commit message")
-  public void createsTagWithMessageAsLastCommitMessage() throws GitAPIException, IOException {
+  void createsTagWithMessageAsLastCommitMessage() throws GitAPIException, IOException {
     GitTagger tagger =
         GitTagger.builder()
             .gitFolder(projectDir)

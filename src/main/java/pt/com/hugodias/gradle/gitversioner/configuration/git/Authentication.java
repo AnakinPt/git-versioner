@@ -3,10 +3,10 @@ package pt.com.hugodias.gradle.gitversioner.configuration.git;
 
 import org.gradle.api.tasks.Nested;
 
-public abstract class Authentication {
+public interface Authentication {
   @Nested
-  public abstract Ssh getSsh();
+  Ssh getSsh();
 
   @Nested
-  public abstract Https getHttps();
+  Https getHttps();
 }

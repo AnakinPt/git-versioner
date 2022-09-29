@@ -10,7 +10,7 @@ import pt.com.hugodias.gradle.gitversioner.IntegrationTest;
 import pt.com.hugodias.gradle.gitversioner.core.version.Version;
 
 @IntegrationTest
-public class VersionTest {
+class VersionTest {
 
   private Version versionWithCommit =
       Version.builder()

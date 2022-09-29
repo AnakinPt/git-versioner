@@ -1,7 +1,7 @@
 plugins {
     id 'java-gradle-plugin'
     id "com.diffplug.spotless" version "6.11.0"
-//    id 'pt.com.hugo-dias.git-versioner' version '1.0.0'
+    id "pt.com.hugo-dias.git-versioner" version "1.0.1"
     id 'maven-publish'
     id "com.gradle.plugin-publish" version "1.0.0"
     id "pl.droidsonroids.jacoco.testkit" version "1.0.7"
@@ -10,7 +10,6 @@ plugins {
 }
 
 group 'pt.com.hugo-dias.gradle.gitversioner'
-version '1.0.1'
 
 repositories {
     mavenCentral()
@@ -88,5 +87,13 @@ sonarqube {
 //        property "sonar.jacoco.reportPaths", "build/jacoco/*.exec"
 //        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
 //        property "sonar.cpd.exclusions", "src/test/**/*"
+    }
+}
+
+versioner {
+    startFrom {
+        major = 1
+        minor = 0
+        patch = 1
     }
 }

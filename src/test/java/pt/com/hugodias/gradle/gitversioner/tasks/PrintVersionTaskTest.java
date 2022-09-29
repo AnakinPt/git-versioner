@@ -12,7 +12,7 @@ import org.junit.jupiter.api.*;
 import pt.com.hugodias.gradle.gitversioner.util.Gradle;
 import pt.com.hugodias.gradle.gitversioner.util.Project;
 
-public class PrintVersionTaskTest {
+class PrintVersionTaskTest {
 
   private File directory;
   private Project project;
@@ -33,8 +33,7 @@ public class PrintVersionTaskTest {
 
   @DisplayName("prints version using default configuration when none is supplied in Groovy")
   @Test
-  public void testPrintsVersionUsingDefaultConfigurationGroovy()
-      throws IOException, GitAPIException {
+  void testPrintsVersionUsingDefaultConfigurationGroovy() throws IOException, GitAPIException {
     project.withSettingsFile().withGit().withGroovyGradleFile("default");
     addCommits();
 
@@ -45,8 +44,7 @@ public class PrintVersionTaskTest {
 
   @DisplayName("prints version using provided configuration when supplied in Groovy")
   @Test
-  public void testPrintsVersionUsingDefinedConfigurationGroovy()
-      throws IOException, GitAPIException {
+  void testPrintsVersionUsingDefinedConfigurationGroovy() throws IOException, GitAPIException {
     project.withSettingsFile().withGit().withGroovyGradleFile("configured");
     addCommits();
 

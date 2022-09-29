@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.val;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.NoHeadException;
+import pt.com.hugodias.gradle.gitversioner.core.exception.VersionerException;
 
 @Data
 @Builder
@@ -18,13 +18,12 @@ public class Versioner {
   private File gitFolder;
 
   public Version version(VersionerConfig config) {
-    try {
+    try (Git git = Git.open(gitFolder)) {
       var major = config.getStartFromMajor();
       var minor = config.getStartFromMinor();
       var patch = config.getStartFromPatch();
       var commit = 0;
 
-      val git = Git.open(gitFolder);
       val branch = git.getRepository().getBranch();
       val hash = git.getRepository().findRef("HEAD").getObjectId().getName();
 
@@ -56,12 +55,8 @@ public class Versioner {
           .branch(branch)
           .hash(hash)
           .build();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (NoHeadException e) {
-      throw new RuntimeException(e);
-    } catch (GitAPIException e) {
-      throw new RuntimeException(e);
+    } catch (IOException | GitAPIException e) {
+      throw new VersionerException(e);
     }
   }
 

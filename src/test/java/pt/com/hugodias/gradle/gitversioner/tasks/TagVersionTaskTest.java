@@ -18,7 +18,7 @@ import org.junit.jupiter.api.*;
 import pt.com.hugodias.gradle.gitversioner.util.Gradle;
 import pt.com.hugodias.gradle.gitversioner.util.Project;
 
-public class TagVersionTaskTest {
+class TagVersionTaskTest {
 
   private File directory;
   private File remoteDir;
@@ -53,7 +53,7 @@ public class TagVersionTaskTest {
   @DisplayName(
       "Creates tag locally and pushes to remote repository using default configuration when none is supplied in Groovy")
   @Test
-  public void testCreateTagLocallyAndPushToRemoteUsingDefaultConfigurationInGroovy()
+  void testCreateTagLocallyAndPushToRemoteUsingDefaultConfigurationInGroovy()
       throws IOException, GitAPIException {
     project.withSettingsFile().withGroovyGradleFile("default");
 
@@ -66,7 +66,7 @@ public class TagVersionTaskTest {
   @DisplayName(
       "Creates tag locally and pushes to remote repository using provided configuration when supplied in Kotlin")
   @Test
-  public void testCreateTagLocallyAndPushToRemoteUsingProvidedConfigurationInKotlin()
+  void testCreateTagLocallyAndPushToRemoteUsingProvidedConfigurationInKotlin()
       throws IOException, GitAPIException {
     project.withSettingsFile().withKotlinGradleFile("configured");
 

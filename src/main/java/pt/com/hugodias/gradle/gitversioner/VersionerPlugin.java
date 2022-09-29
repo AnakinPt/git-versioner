@@ -2,7 +2,6 @@
 package pt.com.hugodias.gradle.gitversioner;
 
 import java.io.File;
-import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskProvider;
@@ -40,18 +39,15 @@ public class VersionerPlugin implements Plugin<Project> {
                 });
 
     project.afterEvaluate(
-        new Action<Project>() {
-          @Override
-          public void execute(Project project) {
-            if (extension.getCalculatedVersion() == null) {
-              VersionerConfig config = VersionerConfig.fromExtension(extension);
-              String version = versioner.version(config).print(config.getPattern());
-              project.setVersion(version);
-            }
-
-            printVersionTask.get().getVersion().set(project.getVersion().toString());
-            tagVersionTask.get().getVersion().set(project.getVersion().toString());
+        innerProject -> {
+          if (extension.getCalculatedVersion() == null) {
+            VersionerConfig config = VersionerConfig.fromExtension(extension);
+            String version = versioner.version(config).print(config.getPattern());
+            innerProject.setVersion(version);
           }
+
+          printVersionTask.get().getVersion().set(innerProject.getVersion().toString());
+          tagVersionTask.get().getVersion().set(innerProject.getVersion().toString());
         });
   }
 }

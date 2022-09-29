@@ -13,14 +13,14 @@ import pt.com.hugodias.gradle.gitversioner.util.Gradle;
 import pt.com.hugodias.gradle.gitversioner.util.Project;
 
 @FunctionalTest
-public class GitVersionerTest {
+class GitVersionerTest {
 
   private File directory;
   private Project project;
   private Gradle gradle;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     directory = new File("build/tmp/functionalTest/GitVersionerTest/");
     directory.mkdirs();
     project = Project.builder().directory(directory).build();
@@ -28,14 +28,13 @@ public class GitVersionerTest {
   }
 
   @AfterEach
-  public void tearDown() throws IOException {
+  void tearDown() throws IOException {
     FileUtils.deleteDirectory(directory);
   }
 
   @DisplayName("Version is available after forcing version resolution in Groovy")
   @Test
-  public void testVersionIsAvailableAfterForcingVersionGroovy()
-      throws IOException, GitAPIException {
+  void testVersionIsAvailableAfterForcingVersionGroovy() throws IOException, GitAPIException {
     project.withSettingsFile().withGit().withGroovyGradleFile("configured");
     addCommits();
 
@@ -46,8 +45,7 @@ public class GitVersionerTest {
 
   @DisplayName("Version is available after forcing version resolution in Kotlin")
   @Test
-  public void testVersionIsAvailableAfterForcingVersionKotlin()
-      throws IOException, GitAPIException {
+  void testVersionIsAvailableAfterForcingVersionKotlin() throws IOException, GitAPIException {
     project.withSettingsFile().withGit().withKotlinGradleFile("configured");
     addCommits();
 

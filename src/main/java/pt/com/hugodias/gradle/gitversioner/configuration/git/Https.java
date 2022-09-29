@@ -3,10 +3,10 @@ package pt.com.hugodias.gradle.gitversioner.configuration.git;
 
 import org.gradle.api.provider.Property;
 
-public abstract class Https {
-  public abstract Property<String> getUsername();
+public interface Https {
+  Property<String> getUsername();
 
-  public abstract Property<String> getPassword();
+  Property<String> getPassword();
 
-  public abstract Property<String> getToken();
+  Property<String> getToken();
 }

@@ -3,8 +3,8 @@ package pt.com.hugodias.gradle.gitversioner.configuration;
 
 import org.gradle.api.provider.Property;
 
-public abstract class Tag {
-  public abstract Property<String> getPrefix();
+public interface Tag {
+  Property<String> getPrefix();
 
-  public abstract Property<Boolean> getUseCommitMessage();
+  Property<Boolean> getUseCommitMessage();
 }

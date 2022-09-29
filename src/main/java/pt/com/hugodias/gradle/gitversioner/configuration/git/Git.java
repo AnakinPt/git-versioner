@@ -3,7 +3,7 @@ package pt.com.hugodias.gradle.gitversioner.configuration.git;
 
 import org.gradle.api.tasks.Nested;
 
-public abstract class Git {
+public interface Git {
   @Nested
-  public abstract Authentication getAuthentication();
+  Authentication getAuthentication();
 }

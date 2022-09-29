@@ -3,10 +3,10 @@ package pt.com.hugodias.gradle.gitversioner.configuration;
 
 import org.gradle.api.provider.Property;
 
-public abstract class StartFrom {
-  public abstract Property<Integer> getMajor();
+public interface StartFrom {
+  Property<Integer> getMajor();
 
-  public abstract Property<Integer> getMinor();
+  Property<Integer> getMinor();
 
-  public abstract Property<Integer> getPatch();
+  Property<Integer> getPatch();
 }

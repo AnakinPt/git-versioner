@@ -8,10 +8,10 @@ import org.gradle.api.Project;
 import org.gradle.testfixtures.ProjectBuilder;
 import org.junit.jupiter.api.Test;
 
-public class VersionerPluginTest {
+class VersionerPluginTest {
 
   @Test
-  public void greetingTest() {
+  void greetingTest() {
     Project project = ProjectBuilder.builder().build();
     project.getPluginManager().apply("pt.com.hugo-dias.git-versioner");
 

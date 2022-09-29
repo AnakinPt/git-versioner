@@ -11,6 +11,7 @@ import org.eclipse.jgit.api.TagCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import pt.com.hugodias.gradle.gitversioner.core.exception.TaggingException;
 
 @Data
 @Builder
@@ -30,7 +31,7 @@ public class GitTagger {
       tagCommand.call();
       git.push().add(prefixedVersion).setCredentialsProvider(credentialsProvider).call();
     } catch (IOException | GitAPIException e) {
-      throw new RuntimeException(e);
+      throw new TaggingException(e);
     }
   }
 
