@@ -2,7 +2,6 @@
 package pt.com.hugodias.gradle.gitversioner;
 
 import java.io.File;
-import lombok.val;
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -25,21 +24,28 @@ public class VersionerPlugin implements Plugin<Project> {
         project.getExtensions().create("versioner", VersionerExtension.class, project, versioner);
     TaskProvider<PrintVersionTask> printVersionTask =
         project.getTasks().register("printVersion", PrintVersionTask.class);
-    GitTagger tagger =
-        GitTagger.builder()
-            .gitFolder(gitFolder)
-            .config(TaggerConfig.fromExtension(extension))
-            .build();
     TaskProvider<TagVersionTask> tagVersionTask =
-        project.getTasks().register("tagVersion", TagVersionTask.class, tagger);
+        project
+            .getTasks()
+            .register(
+                "tagVersion",
+                TagVersionTask.class,
+                task -> {
+                  GitTagger tagger =
+                      GitTagger.builder()
+                          .gitFolder(gitFolder)
+                          .config(TaggerConfig.fromExtension(extension))
+                          .build();
+                  task.setGitTagger(tagger);
+                });
 
     project.afterEvaluate(
         new Action<Project>() {
           @Override
           public void execute(Project project) {
             if (extension.getCalculatedVersion() == null) {
-              val config = VersionerConfig.fromExtension(extension);
-              val version = versioner.version(config).print(config.getPattern());
+              VersionerConfig config = VersionerConfig.fromExtension(extension);
+              String version = versioner.version(config).print(config.getPattern());
               project.setVersion(version);
             }
 

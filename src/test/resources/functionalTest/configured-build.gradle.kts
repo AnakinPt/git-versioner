@@ -4,20 +4,20 @@ plugins {
 
 versioner {
     startFrom {
-        major = 1
-        minor = 1
-        patch = 1
+        major.set(1)
+        minor.set(1)
+        patch.set(1)
     }
     match {
-        major = "trex"
-        minor = "stego"
-        patch = "compy"
+        major.set("trex")
+        minor.set("stego")
+        patch.set("compy")
     }
     tag {
-        prefix = "x"
+        prefix.set("x")
     }
     pattern {
-        pattern = "%M.%m.%p(-%c)"
+        pattern.set("%M.%m.%p(-%c)")
     }
 }
 

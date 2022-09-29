@@ -66,7 +66,6 @@ public class TagVersionTaskTest {
   @DisplayName(
       "Creates tag locally and pushes to remote repository using provided configuration when supplied in Kotlin")
   @Test
-  @Disabled
   public void testCreateTagLocallyAndPushToRemoteUsingProvidedConfigurationInKotlin()
       throws IOException, GitAPIException {
     project.withSettingsFile().withKotlinGradleFile("configured");

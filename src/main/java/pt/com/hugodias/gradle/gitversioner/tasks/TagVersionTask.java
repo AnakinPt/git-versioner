@@ -3,6 +3,7 @@ package pt.com.hugodias.gradle.gitversioner.tasks;
 
 import javax.inject.Inject;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
@@ -14,11 +15,10 @@ public abstract class TagVersionTask extends DefaultTask {
   @Input
   public abstract Property<String> getVersion();
 
-  private final GitTagger gitTagger;
+  @Setter private GitTagger gitTagger;
 
   @TaskAction
   public void tagVersion() {
     gitTagger.tag(getVersion().get());
-    System.out.println("Tag version " + getVersion().get());
   }
 }

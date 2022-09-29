@@ -46,7 +46,6 @@ public class GitVersionerTest {
 
   @DisplayName("Version is available after forcing version resolution in Kotlin")
   @Test
-  @Disabled("Parsing kotlin files are giving test problems. Ignoring for now.")
   public void testVersionIsAvailableAfterForcingVersionKotlin()
       throws IOException, GitAPIException {
     project.withSettingsFile().withGit().withKotlinGradleFile("configured");

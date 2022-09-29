@@ -4,10 +4,12 @@ plugins {
 //    id 'pt.com.hugo-dias.git-versioner' version '1.0.0'
     id 'maven-publish'
     id "com.gradle.plugin-publish" version "1.0.0"
+    id "pl.droidsonroids.jacoco.testkit" version "1.0.7"
+    id "jacoco"
 }
 
 group 'pt.com.hugodias.gradle.gitversioner'
-version '0.0.3'
+version '1.0.0'
 
 repositories {
     mavenCentral()
