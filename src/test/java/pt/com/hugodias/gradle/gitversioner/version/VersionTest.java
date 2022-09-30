@@ -44,13 +44,13 @@ class VersionTest {
         "%M.%m.%p(-SNAPSHOT),1.2.3-SNAPSHOT"
       })
   @DisplayName("prints version correctly according to pattern")
-  public void testWithCommit(String pattern, String expected) {
+  void testWithCommit(String pattern, String expected) {
     assertThat(versionWithCommit.print(pattern)).isEqualTo(expected);
   }
 
   @ParameterizedTest(name = "{index} pattern {0} prints the version correctly")
   @CsvSource(value = {"%M.%m.%p(-%b),1.2.3", "%M.%m.%p(-SNAPSHOT),1.2.3"})
-  public void testWithoutCommit(String pattern, String expected) {
+  void testWithoutCommit(String pattern, String expected) {
     assertThat(versionWithoutCommit.print(pattern)).isEqualTo(expected);
   }
 }
