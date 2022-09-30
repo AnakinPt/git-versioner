@@ -25,7 +25,7 @@ jobs:
           GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
           GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
         run: ./gradlew publishPlugins
-#      - name: Tag version
-#        env:
-#          TOKEN: ${{ secrets.TOKEN }}
-#        run: ./gradlew tagVersion
+      - name: Tag version
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+        run: ./gradlew tagVersion
