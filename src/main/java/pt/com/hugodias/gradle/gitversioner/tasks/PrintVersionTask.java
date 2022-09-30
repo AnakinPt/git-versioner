@@ -11,6 +11,7 @@ public abstract class PrintVersionTask extends DefaultTask {
   public abstract Property<String> getVersion();
 
   @TaskAction
+  @SuppressWarnings("java:S106")
   public void printVersion() {
     System.out.println(getVersion().get());
   }

@@ -1,5 +1,5 @@
 # Gradle Git Versioner
-[![Plugin Portal](https://img.shields.io/maven-metadata/v?label=plugin%20portal&logo=gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fplugin%2Fpt.com.hugo-dias.git-versioner%2Fmaven-metadata.xml&style=for-the-badge)](https://img.shields.io/gradle-plugin-portal/v/pt.com.hugo-dias.git-versioner)
+[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/pt.com.hugo-dias.git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner)
 [![Release Date](https://img.shields.io/github/release-date/AnakinPt/git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner)  
 [![Build Status](https://img.shields.io/github/workflow/status/AnakinPt/git-versioner/Build?logo=github&style=for-the-badge)](https://github.com/AnakinPt/git-versioner/actions?query=workflow%3Abuild)
 
@@ -23,7 +23,7 @@ It's customisable too- you can decide what to look for to decide whether somethi
 ## How do I migrate to using Git Versioner?
 That's really simple too. 
 
-1. Find us on the [Gradle Plugin Portal](https://plugins.gradle.org/plugin/pt.com.hugodias.git-versioner).
+1. Find us on the [Gradle Plugin Portal](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner).
 
 2. Apply the plugin using your preferred syntax.
 
@@ -268,6 +268,30 @@ versioner.apply()
 task version2() {
     println project.version // prints version - version has been applied before this line is evaluated
 }
+```
+
+## I use kotlin to configure gradle, how can I use this plugin?
+If you use the build.gradle.kts file, there's a small change in the configuration of the plugin. You should use this format, instead:
+```kotlin
+versioner {
+    startFrom {
+        major.set(1)
+        minor.set(1)
+        patch.set(1)
+    }
+    match {
+        major.set("trex")
+        minor.set("stego")
+        patch.set("compy")
+    }
+    tag {
+        prefix.set("x")
+    }
+    pattern {
+        pattern.set("%M.%m.%p(-%c)")
+    }
+}
+
 ```
 
 ## This is so cool, how do I contribute?
