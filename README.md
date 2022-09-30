@@ -1,5 +1,5 @@
 # Gradle Git Versioner
-[![Plugin Portal](https://img.shields.io/maven-metadata/v?label=plugin%20portal&logo=gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fplugin%2Fpt.com.hugo-dias.git-versioner%2Fmaven-metadata.xml&style=for-the-badge)](https://img.shields.io/gradle-plugin-portal/v/pt.com.hugo-dias.git-versioner)
+[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/pt.com.hugo-dias.git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner)
 [![Release Date](https://img.shields.io/github/release-date/AnakinPt/git-versioner?logo=gradle&style=for-the-badge)](https://plugins.gradle.org/plugin/pt.com.hugo-dias.git-versioner)  
 [![Build Status](https://img.shields.io/github/workflow/status/AnakinPt/git-versioner/Build?logo=github&style=for-the-badge)](https://github.com/AnakinPt/git-versioner/actions?query=workflow%3Abuild)
 
