@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.val;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.revwalk.RevCommit;
 import pt.com.hugodias.gradle.gitversioner.core.exception.VersionerException;
 
 @Data
@@ -25,9 +26,12 @@ public class Versioner {
       var commit = 0;
 
       val branch = git.getRepository().getBranch();
-      val hash = git.getRepository().findRef("HEAD").getObjectId().getName();
-
-      val all = reverse(git.log().call());
+      String hash = "";
+      List<RevCommit> all = new LinkedList<>();
+      if (git.getRepository().findRef("HEAD").getObjectId() != null) {
+        hash = git.getRepository().findRef("HEAD").getObjectId().getName();
+        all = reverse(git.log().call());
+      }
 
       for (val it : all) {
         if (it.getFullMessage().contains(config.getMatchMajor())) {

@@ -243,6 +243,28 @@ class VersionerTest {
         .isEqualTo(git.getRepository().findRef("HEAD").getObjectId().getName());
   }
 
+  @Test
+  @DisplayName("Repository is empty")
+  void testWithAnEmptyRepository() {
+    VersionerConfig versionerConfig = VersionerConfig.builder().build();
+    Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
+    Version version = versioner.version(versionerConfig);
+    assertThat(version.getMajor()).isEqualTo(0);
+    assertThat(version.getMinor()).isEqualTo(0);
+    assertThat(version.getPatch()).isEqualTo(0);
+  }
+
+  @Test
+  @DisplayName("Repository is empty and we have a patch custom configuration")
+  void testWithAnEmptyRepositoryWithCustomPatch() {
+    VersionerConfig versionerConfig = VersionerConfig.builder().startFromPatch(1).build();
+    Versioner versioner = Versioner.builder().gitFolder(projectDir).build();
+    Version version = versioner.version(versionerConfig);
+    assertThat(version.getMajor()).isEqualTo(0);
+    assertThat(version.getMinor()).isEqualTo(0);
+    assertThat(version.getPatch()).isEqualTo(1);
+  }
+
   private void givenRepositoryHasTypeCommitsNumbering(String message, int number)
       throws GitAPIException {
     createCommits(String.format("[%s]", message), number);
