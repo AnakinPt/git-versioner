@@ -53,6 +53,18 @@ class PrintVersionTaskTest {
     assertThat(result.getOutput()).contains("2.1.1-4");
   }
 
+  @DisplayName(
+      "prints version using default configuration when none is supplied in Groovy and we have an empty repository")
+  @Test
+  void testPrintsVersionUsingDefaultConfigurationGroovyEmptyRepository()
+      throws IOException, GitAPIException {
+    project.withSettingsFile().withGit().withGroovyGradleFile("default");
+
+    BuildResult result = gradle.runTask("printVersion");
+
+    assertThat(result.getOutput()).contains("0.0.0");
+  }
+
   private void addCommits() throws GitAPIException {
     project
         .withCommit("trex")

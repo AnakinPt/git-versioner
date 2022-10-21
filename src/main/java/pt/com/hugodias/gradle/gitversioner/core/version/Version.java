@@ -24,7 +24,7 @@ public class Version {
             .replace("%c", String.valueOf(commit))
             .replace("%b", branch)
             .replace("%H", hash)
-            .replace("%h", hash.substring(0, 7));
+            .replace("%h", hash.isEmpty() ? "" : hash.substring(0, 7));
     return commit != 0 ? removeParentheses(filledVersion) : removeCommitConditionals(filledVersion);
   }
 
