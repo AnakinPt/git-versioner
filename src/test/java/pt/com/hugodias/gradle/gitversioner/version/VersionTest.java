@@ -32,6 +32,16 @@ class VersionTest {
           .hash("myhash123")
           .build();
 
+  private Version versionWithCommitAndBranchWithSlashes =
+      Version.builder()
+          .major(1)
+          .minor(2)
+          .patch(3)
+          .commit(4)
+          .branch("feature/mybranch")
+          .hash("myhash123")
+          .build();
+
   @ParameterizedTest(name = "{index} pattern {0} prints the version correctly")
   @CsvSource(
       value = {
@@ -52,5 +62,21 @@ class VersionTest {
   @CsvSource(value = {"%M.%m.%p(-%b),1.2.3", "%M.%m.%p(-SNAPSHOT),1.2.3"})
   void testWithoutCommit(String pattern, String expected) {
     assertThat(versionWithoutCommit.print(pattern)).isEqualTo(expected);
+  }
+
+  @ParameterizedTest(name = "{index} pattern {0} prints the version correctly")
+  @CsvSource(
+      value = {
+        "%M.%m.%p.%c,1.2.3.4",
+        "%M.%m.%p-%c,1.2.3-4",
+        "%M.%m.%p-%H,1.2.3-myhash123",
+        "%M.%m.%p-%h,1.2.3-myhash1",
+        "%M.%m.%p-%b,1.2.3-feature_mybranch",
+        "%M.%m.%p(-%c),1.2.3-4",
+        "%M.%m.%p(-SNAPSHOT),1.2.3-SNAPSHOT"
+      })
+  @DisplayName("prints version correctly according to pattern")
+  void testWithCommitAndBranchWithSlashes(String pattern, String expected) {
+    assertThat(versionWithCommitAndBranchWithSlashes.print(pattern)).isEqualTo(expected);
   }
 }

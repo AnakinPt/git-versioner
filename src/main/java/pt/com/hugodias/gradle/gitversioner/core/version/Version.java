@@ -22,7 +22,7 @@ public class Version {
             .replace("%m", String.valueOf(minor))
             .replace("%p", String.valueOf(patch))
             .replace("%c", String.valueOf(commit))
-            .replace("%b", branch)
+            .replace("%b", removeSlashes(branch))
             .replace("%H", hash)
             .replace("%h", hash.isEmpty() ? "" : hash.substring(0, 7));
     return commit != 0 ? removeParentheses(filledVersion) : removeCommitConditionals(filledVersion);
@@ -34,5 +34,9 @@ public class Version {
 
   private String removeParentheses(String version) {
     return version.replace("(", "").replace(")", "");
+  }
+
+  private String removeSlashes(String branch) {
+    return branch.replaceAll("\\/", "_");
   }
 }

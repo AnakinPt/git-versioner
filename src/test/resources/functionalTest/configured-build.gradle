@@ -19,6 +19,15 @@ versioner {
     pattern {
         pattern = "%M.%m.%p(-%c)"
     }
+    git {
+        authentication {
+            https {
+                username = "user"
+                token = "token"
+            }
+        }
+    }
+
 }
 
 task("printVersionEarly") {
