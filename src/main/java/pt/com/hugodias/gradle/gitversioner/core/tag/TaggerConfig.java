@@ -18,8 +18,12 @@ public class TaggerConfig {
   private boolean useCommitMessage;
 
   public static TaggerConfig fromExtension(VersionerExtension extension) {
-    log.debug("Tagger Config: " + extension.getGit().getAuthentication().getHttps().getUsername().getOrElse("NO-USER"));
-    log.debug("Tagger Config: " + extension.getGit().getAuthentication().getHttps().getPassword().getOrElse("NO-USER"));
+    log.debug(
+        "Tagger Config: "
+            + extension.getGit().getAuthentication().getHttps().getUsername().getOrElse("NO-USER"));
+    log.debug(
+        "Tagger Config: "
+            + extension.getGit().getAuthentication().getHttps().getPassword().getOrElse("NO-USER"));
     return TaggerConfig.builder()
         .username(extension.getGit().getAuthentication().getHttps().getUsername().getOrNull())
         .password(extension.getGit().getAuthentication().getHttps().getPassword().getOrNull())
