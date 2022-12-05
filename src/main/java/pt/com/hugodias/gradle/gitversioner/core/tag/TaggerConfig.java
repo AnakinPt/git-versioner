@@ -3,10 +3,12 @@ package pt.com.hugodias.gradle.gitversioner.core.tag;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import pt.com.hugodias.gradle.gitversioner.configuration.VersionerExtension;
 
 @Data
 @Builder
+@Slf4j
 public class TaggerConfig {
   private String username;
   private String password;
