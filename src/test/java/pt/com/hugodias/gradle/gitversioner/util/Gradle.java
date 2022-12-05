@@ -20,7 +20,7 @@ public class Gradle {
         new File(directory + "/gradle.properties"));
     return GradleRunner.create()
         .withProjectDir(directory)
-        .withArguments(name, "--debug") // , "-q"
+        .withArguments(name, "--q")
         .withPluginClasspath()
         .forwardOutput()
         .build();

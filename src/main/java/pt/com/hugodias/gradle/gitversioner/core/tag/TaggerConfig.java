@@ -3,10 +3,12 @@ package pt.com.hugodias.gradle.gitversioner.core.tag;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import pt.com.hugodias.gradle.gitversioner.configuration.VersionerExtension;
 
 @Data
 @Builder
+@Slf4j
 public class TaggerConfig {
   private String username;
   private String password;
@@ -16,6 +18,8 @@ public class TaggerConfig {
   private boolean useCommitMessage;
 
   public static TaggerConfig fromExtension(VersionerExtension extension) {
+    log.debug("Tagger Config: " + extension.getGit().getAuthentication().getHttps().getUsername().getOrElse("NO-USER"));
+    log.debug("Tagger Config: " + extension.getGit().getAuthentication().getHttps().getPassword().getOrElse("NO-USER"));
     return TaggerConfig.builder()
         .username(extension.getGit().getAuthentication().getHttps().getUsername().getOrNull())
         .password(extension.getGit().getAuthentication().getHttps().getPassword().getOrNull())
