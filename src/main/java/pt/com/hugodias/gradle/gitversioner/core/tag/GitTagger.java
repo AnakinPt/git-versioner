@@ -56,7 +56,7 @@ public class GitTagger {
       return new UsernamePasswordCredentialsProvider(config.getToken(), "");
     }
     log.debug("Creating the default Credential Provider");
-    return CredentialsProvider.getDefault();
+    return new UsernamePasswordCredentialsProvider("", "");
   }
 
   private String getLastCommitMessage(Git git) throws GitAPIException {
