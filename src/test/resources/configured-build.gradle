@@ -16,4 +16,7 @@ versioner {
     tag {
         prefix = "x"
     }
+    git {
+        remote = "alpha"
+    }
 }

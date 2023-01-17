@@ -26,24 +26,30 @@ class GitTaggerTest {
 
   private File projectDir = new File("build/tmp/integrationTest/local");
   private File remoteDir = new File("build/tmp/integrationTest/remote");
+  private File remoteTagDir = new File("build/tmp/integrationTest/remoteTag");
 
   private Git localGit;
   private Git remoteGit;
+  private Git remoteTagGit;
 
   @BeforeEach
   public void setUp() throws IOException, GitAPIException, URISyntaxException {
     localGit = createRepository(projectDir);
     remoteGit = createRepository(remoteDir);
+    remoteTagGit = createRepository(remoteTagDir);
     addCommitToLocalRepository(localGit);
-    addRemoteAsLocalOrigin(localGit);
+    addRemoteAsLocalOrigin(localGit, "origin", remoteDir);
+    addRemoteAsLocalOrigin(localGit, "tag", remoteTagDir);
   }
 
   @AfterEach
   public void tearDown() throws IOException {
     localGit.close();
     remoteGit.close();
+    remoteTagGit.close();
     FileUtils.deleteDirectory(projectDir);
     FileUtils.deleteDirectory(remoteDir);
+    FileUtils.deleteDirectory(remoteTagDir);
   }
 
   private Git createRepository(File file) throws IOException, GitAPIException {
@@ -56,8 +62,9 @@ class GitTaggerTest {
     git.commit().setSign(false).setAllowEmpty(true).setMessage("Commit\nCommit").call();
   }
 
-  private void addRemoteAsLocalOrigin(Git git) throws URISyntaxException, GitAPIException {
-    git.remoteAdd().setName("origin").setUri(new URIish(remoteDir.getAbsolutePath())).call();
+  private void addRemoteAsLocalOrigin(Git git, String remoteName, File remoteDir)
+      throws URISyntaxException, GitAPIException {
+    git.remoteAdd().setName(remoteName).setUri(new URIish(remoteDir.getAbsolutePath())).call();
   }
 
   @Test
@@ -104,6 +111,19 @@ class GitTaggerTest {
     tagger.tag("1.0.0");
     assertThat(lastTag(localGit).getFullMessage()).isEqualTo("Commit\nCommit");
     assertThat(lastTag(remoteGit).getFullMessage()).isEqualTo("Commit\nCommit");
+  }
+
+  @Test
+  @DisplayName("Creates tag locally and pushes to remote repository")
+  void createTagLocallyAndPushToNonStandardRemote() throws GitAPIException, IOException {
+    GitTagger tagger =
+        GitTagger.builder()
+            .gitFolder(projectDir)
+            .config(TaggerConfig.builder().remote("tag").build())
+            .build();
+    tagger.tag("2.0.0");
+    assertThat(lastTag(localGit).getTagName()).isEqualTo("v2.0.0");
+    assertThat(lastTag(remoteTagGit).getTagName()).isEqualTo("v2.0.0");
   }
 
   private RevTag lastTag(Git git) throws GitAPIException, IOException {

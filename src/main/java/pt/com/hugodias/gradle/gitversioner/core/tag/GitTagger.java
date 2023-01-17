@@ -33,7 +33,11 @@ public class GitTagger {
       }
       tagCommand.call();
       log.debug("Pushing the new tag with name " + prefixedVersion);
-      git.push().add(prefixedVersion).setCredentialsProvider(credentialsProvider).call();
+      git.push()
+          .setRemote(config.getRemote())
+          .add(prefixedVersion)
+          .setCredentialsProvider(credentialsProvider)
+          .call();
     } catch (IOException | GitAPIException e) {
       throw new TaggingException(e);
     }

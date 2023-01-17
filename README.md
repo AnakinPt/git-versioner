@@ -294,6 +294,16 @@ versioner {
 
 ```
 
+## I need to provide a different name for the remote repository to push my new tag
+If you need to provide a different remote name for the push, because you might need a different credential to push, you can identify the remote in the tag block as this:
+```shell
+versioner {
+  git {
+    remote = "alpha"
+  }
+}
+
+```
 ## This is so cool, how do I contribute?
 I know right? You should check out the [contribution guide](CONTRIBUTING.md).
 

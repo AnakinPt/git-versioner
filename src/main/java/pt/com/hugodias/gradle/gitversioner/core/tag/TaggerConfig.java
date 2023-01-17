@@ -16,6 +16,7 @@ public class TaggerConfig {
   private boolean strictHostChecking;
   @Builder.Default private String prefix = "v";
   private boolean useCommitMessage;
+  @Builder.Default private String remote = "origin";
 
   public static TaggerConfig fromExtension(VersionerExtension extension) {
     return TaggerConfig.builder()
@@ -26,6 +27,7 @@ public class TaggerConfig {
             extension.getGit().getAuthentication().getSsh().getStrictSsl().getOrElse(false))
         .prefix(extension.getTag().getPrefix().getOrElse("v"))
         .useCommitMessage(extension.getTag().getUseCommitMessage().getOrElse(false))
+        .remote(extension.getGit().getRemote().getOrElse("origin"))
         .build();
   }
 }
