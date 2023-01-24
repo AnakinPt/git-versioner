@@ -39,6 +39,7 @@ public class GitTagger {
           .setCredentialsProvider(credentialsProvider)
           .call();
     } catch (IOException | GitAPIException e) {
+      log.error("Error tagging the version.", e);
       throw new TaggingException(e);
     }
   }
