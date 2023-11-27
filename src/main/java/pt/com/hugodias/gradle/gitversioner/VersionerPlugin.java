@@ -17,7 +17,7 @@ public class VersionerPlugin implements Plugin<Project> {
 
   @Override
   public void apply(Project project) {
-    File gitFolder = new File(project.getRootDir() + "/.git");
+    File gitFolder = findGitFolder(project.getRootDir());
     Versioner versioner = Versioner.builder().gitFolder(gitFolder).build();
     VersionerExtension extension =
         project.getExtensions().create("versioner", VersionerExtension.class, project, versioner);
@@ -49,5 +49,13 @@ public class VersionerPlugin implements Plugin<Project> {
           printVersionTask.get().getVersion().set(innerProject.getVersion().toString());
           tagVersionTask.get().getVersion().set(innerProject.getVersion().toString());
         });
+  }
+
+  File findGitFolder(File folder) {
+      if(folder == null) {
+          throw new IllegalStateException("No .git directory found in path tree");
+      }
+      File gitFolder = new File(folder, ".git");
+      return gitFolder.exists() ? gitFolder : findGitFolder(folder.getParentFile());
   }
 }
